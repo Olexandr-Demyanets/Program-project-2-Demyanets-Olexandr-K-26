@@ -1,0 +1,91 @@
+Build: optimization -O3, parallel backend for policies: TBB (par/par_unseq run in parallel)
+
+========== Length 1000 (file sequence_1000.txt) ==========
+--- Library: adjacent_difference + max_element (median of 5 runs) ---
+Variant                        Time    Result
+no policy                  0.001 ms      1865
+execution::seq             0.001 ms      1865
+execution::par             0.018 ms      1865
+execution::par_unseq       0.018 ms      1865
+execution::unseq           0.001 ms      1865
+
+--- Own algorithm: K threads, each runs sequential adjacent_difference ---
+Hardware threads: 16, median of 5 runs
+K                              Time    Result
+1                          0.111 ms      1865
+2                          0.121 ms      1865
+3                          0.142 ms      1865
+4                          0.160 ms      1865
+6                          0.246 ms      1865
+8                          0.295 ms      1865
+12                         0.457 ms      1865
+16                         0.524 ms      1865
+24                         0.717 ms      1865
+32                         0.947 ms      1865
+64                         1.970 ms      1865
+128                        3.477 ms      1865
+256                        7.051 ms      1865
+512                       14.344 ms      1865
+Best K = 1 (0.111 ms)
+Best K / hardware threads = 1 / 16 = 0.06
+
+========== Length 100000 (file sequence_100000.txt) ==========
+--- Library: adjacent_difference + max_element (median of 5 runs) ---
+Variant                        Time    Result
+no policy                  0.050 ms      1992
+execution::seq             0.050 ms      1992
+execution::par             0.097 ms      1992
+execution::par_unseq       0.098 ms      1992
+execution::unseq           0.146 ms      1992
+
+--- Own algorithm: K threads, each runs sequential adjacent_difference ---
+Hardware threads: 16, median of 5 runs
+K                              Time    Result
+1                          0.263 ms      1992
+2                          0.207 ms      1992
+3                          0.175 ms      1992
+4                          0.199 ms      1992
+6                          0.281 ms      1992
+8                          0.316 ms      1992
+12                         0.434 ms      1992
+16                         0.546 ms      1992
+24                         0.830 ms      1992
+32                         1.056 ms      1992
+64                         1.940 ms      1992
+128                        3.634 ms      1992
+256                        7.082 ms      1992
+512                       14.325 ms      1992
+1024                      28.423 ms      1992
+Best K = 3 (0.175 ms)
+Best K / hardware threads = 3 / 16 = 0.19
+
+========== Length 10000000 (file sequence_10000000.txt) ==========
+--- Library: adjacent_difference + max_element (median of 5 runs) ---
+Variant                        Time    Result
+no policy                  8.262 ms      2000
+execution::seq             8.339 ms      2000
+execution::par             4.777 ms      2000
+execution::par_unseq       5.013 ms      2000
+execution::unseq          10.096 ms      2000
+
+--- Own algorithm: K threads, each runs sequential adjacent_difference ---
+Hardware threads: 16, median of 5 runs
+K                              Time    Result
+1                          8.367 ms      2000
+2                          5.031 ms      2000
+3                          3.751 ms      2000
+4                          3.161 ms      2000
+6                          2.848 ms      2000
+8                          2.337 ms      2000
+12                         3.139 ms      2000
+16                         2.851 ms      2000
+24                         2.804 ms      2000
+32                         2.932 ms      2000
+64                         3.665 ms      2000
+128                        4.653 ms      2000
+256                        7.694 ms      2000
+512                       14.184 ms      2000
+1024                      27.896 ms      2000
+Best K = 8 (2.337 ms)
+Best K / hardware threads = 8 / 16 = 0.50
+

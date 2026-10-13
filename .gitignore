@@ -1,0 +1,5 @@
+build-*/
+*.exe
+.vscode/
+sequence_100000.txt
+sequence_10000000.txt
