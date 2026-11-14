@@ -23,7 +23,7 @@ namespace
     struct Measurement
     {
         double ms;
-        int result;
+        long long result;
     };
 
     template <class Func>
@@ -31,7 +31,7 @@ namespace
     {
         vector<double> times;
         times.reserve(repeats);
-        int result = 0;
+        long long result = 0;
 
         for (int i = 0; i < repeats; ++i)
         {

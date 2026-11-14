@@ -9,17 +9,22 @@
 
 void requireAdjacentPair(const std::vector<int>& seq);
 
-int maxAdjacentDifference(const std::vector<int>& seq);
+inline constexpr auto difference = [](int current, int previous)
+{
+    return static_cast<long long>(current) - previous;
+};
 
-int maxAdjacentDifferenceParallel(const std::vector<int>& seq, std::size_t k);
+long long maxAdjacentDifference(const std::vector<int>& seq);
+
+long long maxAdjacentDifferenceParallel(const std::vector<int>& seq, std::size_t k);
 
 template <class Policy>
-int maxAdjacentDifference(Policy&& policy, const std::vector<int>& seq)
+long long maxAdjacentDifference(Policy&& policy, const std::vector<int>& seq)
 {
     requireAdjacentPair(seq);
 
-    std::vector<int> diff(seq.size());
-    std::adjacent_difference(policy, seq.begin(), seq.end(), diff.begin());
+    std::vector<long long> diff(seq.size());
+    std::adjacent_difference(policy, seq.begin(), seq.end(), diff.begin(), difference);
 
     return *std::max_element(policy, diff.begin() + 1, diff.end());
 }

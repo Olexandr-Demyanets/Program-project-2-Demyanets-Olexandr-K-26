@@ -9,10 +9,10 @@ namespace
 {
     using Iter = vector<int>::const_iterator;
 
-    int maxDifferenceInRange(Iter first, Iter last)
+    long long maxDifferenceInRange(Iter first, Iter last)
     {
-        vector<int> diff(last - first);
-        adjacent_difference(first, last, diff.begin());
+        vector<long long> diff(last - first);
+        adjacent_difference(first, last, diff.begin(), difference);
 
         return *max_element(diff.begin() + 1, diff.end());
     }
@@ -24,14 +24,14 @@ void requireAdjacentPair(const vector<int>& seq)
         throw invalid_argument("Need at least 2 elements to compute difference");
 }
 
-int maxAdjacentDifference(const vector<int>& seq)
+long long maxAdjacentDifference(const vector<int>& seq)
 {
     requireAdjacentPair(seq);
 
     return maxDifferenceInRange(seq.begin(), seq.end());
 }
 
-int maxAdjacentDifferenceParallel(const vector<int>& seq, size_t k)
+long long maxAdjacentDifferenceParallel(const vector<int>& seq, size_t k)
 {
     requireAdjacentPair(seq);
 
@@ -41,7 +41,7 @@ int maxAdjacentDifferenceParallel(const vector<int>& seq, size_t k)
     size_t base = pairs / k;
     size_t rem = pairs % k;
 
-    vector<int> partial(k);
+    vector<long long> partial(k);
     vector<thread> threads;
     threads.reserve(k);
 
